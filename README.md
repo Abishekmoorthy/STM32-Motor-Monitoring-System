@@ -96,4 +96,13 @@ To run this project on your STM32 board:
 ---
 
 ## 📈 Sample Bluetooth Output
+  temperature 28
+  temperature 30
+  temperature 35
+
+---
+
+## 🧾 Conclusion
+
+This project demonstrates how **embedded systems** and **sensor integration** can be applied to **predictive motor maintenance**. By monitoring **shaft behavior** and **thermal health**, timely maintenance actions can be taken to prevent failure, particularly useful in **industrial environments** or **mechanical systems**.
 

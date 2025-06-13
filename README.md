@@ -4,15 +4,6 @@ This project is a smart embedded system designed to predict motor failure by mon
 
 ---
 
-## 👨‍💻 Team Members
-
-- CB.EN.U4CSE22001  
-- CB.EN.U4CSE22011  
-- CB.EN.U4CSE22015  
-- CB.EN.U4CSE22036  
-
----
-
 ## 📌 Project Overview
 
 Our system is built using the **STM32F401** microcontroller and integrates the following components:

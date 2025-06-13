@@ -1,6 +1,17 @@
 # 🔧 Motor Failure Prediction using STM32F401
 
-This project is a smart embedded system designed to predict motor failure by monitoring **temperature** and **proximity** using sensors, and then providing **visual alerts** and **Bluetooth-based updates**.
+This project is a smart embedded system designed to predict motor failure by monitoring **temperature** and **shaft position** (using ultrasonic sensors), and then providing **visual alerts** and **Bluetooth-based updates**.
+
+When the ultrasonic sensor detects a **close-range object**, it is treated as a **shaft misalignment or wear** — triggering a **motor maintenance alert**.
+
+---
+
+## 👨‍💻 Team Members
+
+- CB.EN.U4CSE22001  
+- CB.EN.U4CSE22011  
+- CB.EN.U4CSE22015  
+- CB.EN.U4CSE22036  
 
 ---
 
@@ -8,12 +19,12 @@ This project is a smart embedded system designed to predict motor failure by mon
 
 Our system is built using the **STM32F401** microcontroller and integrates the following components:
 
-- ✅ Two **Ultrasonic Sensors** for proximity detection  
+- ✅ Two **Ultrasonic Sensors** for shaft (proximity) monitoring  
 - 🌡️ One **Temperature Sensor**  
-- 🚦 **LED Indicators** (Red, Yellow, Green) to signal warning levels  
+- 🚦 **LED Indicators** (Red, Yellow, Green) to signal motor health status  
 - 🌬️ A **Fan** that turns on at high temperature  
 - 📲 **Bluetooth Communication** to send temperature data over UART  
-- ⚡ **Interrupts** for real-time sensor responses  
+- ⚡ **Interrupts** for real-time event handling  
 
 ---
 
@@ -21,74 +32,77 @@ Our system is built using the **STM32F401** microcontroller and integrates the f
 
 ### 🔍 Sensor Monitoring
 
-- **Distance Measurement** using ultrasonic sensors  
-- **Temperature Reading** via analog-to-digital conversion (ADC)  
-- **Real-time Interrupts** for accurate sensor response  
+- **Distance Measurement** via ultrasonic sensors simulating shaft position
+- **Temperature Reading** through ADC
+- **Interrupt-driven sensor event handling**
 
 ### 💡 Alerts & Responses
 
-- **LED Alerts:**
-  - 🔴 Red – Close range (Warning)  
-  - 🟡 Yellow – Moderate range  
-  - 🟢 Green – Safe distance  
-- **Fan Activation** when temperature crosses the threshold  
-- **Bluetooth Transmission** of temperature to paired devices  
+- **LED Indicators** for shaft/motor condition:
+  - 🔴 **Red** – Close shaft reading → *Maintenance Needed*  
+  - 🟡 **Yellow** – Moderate shaft clearance  
+  - 🟢 **Green** – Shaft running normally  
+
+- **Fan Activation** at high temperature
+- **Bluetooth Data Transmission** of live temperature values
 
 ---
 
 ## ⚙️ System Components
 
-| Component            | Function                      |
-|----------------------|-------------------------------|
-| STM32F401            | Main controller               |
-| Ultrasonic Sensors   | Distance monitoring           |
-| Temperature Sensor   | Detects overheating           |
-| LEDs (Red, Yellow, Green) | Visual status indicator |
-| Fan                  | Cooling system                |
-| UART + Bluetooth     | Wireless data communication   |
+| Component                | Function                           |
+|--------------------------|------------------------------------|
+| **STM32F401**            | Main embedded controller           |
+| **Ultrasonic Sensors**   | Shaft position / proximity monitor |
+| **Temperature Sensor**   | Detects overheating conditions     |
+| **LEDs (R, Y, G)**       | Indicate motor shaft status        |
+| **Fan**                  | Activates during overheating       |
+| **UART + Bluetooth**     | Wireless temperature reporting     |
 
 ---
 
 ## 🧠 How It Works
 
-1. System starts and initializes all configurations  
-2. Then continuously:
-   - Measures distance from two sensors  
-   - Checks temperature using ADC  
-   - Updates LED indicators based on distance  
-   - Turns on fan if temperature is high  
-   - Sends temperature via Bluetooth  
+1. The system initializes all hardware configurations
+2. In a continuous loop:
+   - Measures distance (shaft position) via ultrasonic sensors  
+   - Reads motor temperature  
+   - Updates LEDs based on shaft condition  
+   - Turns on fan if temperature exceeds threshold  
+   - Sends temperature data over Bluetooth  
 
 ---
 
 ## 📡 Pin Configuration Highlights
 
-- `PA0`, `PA2` – Ultrasonic Triggers  
-- `PA1`, `PA3` – Ultrasonic Echoes  
-- `PB12–14` – LEDs for Sensor 1  
-- `PA8`, `PA11–12` – LEDs for Sensor 2  
-- `PB9` – Temperature Sensor (ADC Input)  
-- `PB8` – Fan Output  
-- `PA9`, `PA10` – USART1 TX/RX for Bluetooth  
+| Pin(s)        | Purpose                       |
+|---------------|-------------------------------|
+| `PA0`, `PA2`  | Ultrasonic Trigger Pins       |
+| `PA1`, `PA3`  | Ultrasonic Echo Pins          |
+| `PB12–PB14`   | Sensor 1 LED Indicators       |
+| `PA8`, `PA11–PA12` | Sensor 2 LED Indicators  |
+| `PB9`         | Temperature Sensor (ADC Input)|
+| `PB8`         | Fan Output                    |
+| `PA9`, `PA10` | UART1 TX/RX (Bluetooth)       |
 
 ---
 
 ## 🧾 Files Included
 
-- `motor-failure.c`: Source code for the STM32 embedded system  
-- `MOTOR FAILURE PREDICTION.docx`: Detailed documentation and pin reference  
+- `motor-failure.c` – Embedded system source code  
+- `MOTOR FAILURE PREDICTION.docx` – Project documentation and pin details  
 
 ---
 
 ## 📦 Getting Started
 
-To run this on your STM32 board:
+To run this project on your STM32 board:
 
-1. Flash the `motor-failure.c` code using STM32CubeIDE or any compatible tool  
-2. Power up the circuit with proper sensor and Bluetooth module connections  
-3. Use a serial terminal or Bluetooth app to view temperature updates  
+1. Flash the `motor-failure.c` using STM32CubeIDE (or compatible toolchain)  
+2. Connect ultrasonic sensors, temperature sensor, fan, and Bluetooth module properly  
+3. Open a serial/Bluetooth terminal to receive live temperature updates  
 
 ---
 
-## 📈 Output Example (via Bluetooth)
+## 📈 Sample Bluetooth Output
 

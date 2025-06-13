@@ -96,9 +96,9 @@ To run this project on your STM32 board:
 ---
 
 ## 📈 Sample Bluetooth Output
-  - **temperature 28**
-  - **temperature 30**
-  - **temperature 35**
+   **temperature 28**
+   **temperature 30**
+   **temperature 35**
 
 ---
 

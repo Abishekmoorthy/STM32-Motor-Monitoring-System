@@ -6,15 +6,6 @@ When the ultrasonic sensor detects a **close-range object**, it is treated as a 
 
 ---
 
-## 👨‍💻 Team Members
-
-- CB.EN.U4CSE22001  
-- CB.EN.U4CSE22011  
-- CB.EN.U4CSE22015  
-- CB.EN.U4CSE22036  
-
----
-
 ## 📌 Project Overview
 
 Our system is built using the **STM32F401** microcontroller and integrates the following components:
